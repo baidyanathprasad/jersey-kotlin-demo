@@ -2,25 +2,32 @@ buildscript {
     ext {
         kotlinVersion = '1.2.21'
         jerseyVersion = '3.0.2'
+        shadowVersion = '2.0.2'
     }
 }
 /**
- * This section is for all of the plugins we need to make this work. 
- * Kotlin, the fat jar builder, and flag it 
+ * This section is for all of the plugins we need to make this work.
+ * Kotlin, the fat jar builder, and flag it
  * as an application so `./gradlew run` will work
  */
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.21'
     id 'com.github.johnrengelman.shadow' version '2.0.2'
+    id "de.undercouch.download" version "4.1.1"
 }
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 apply plugin: 'application'
 
+configurations {
+    ktlint
+}
+
 /**
- * Standard dependency section for gradle. 
+ * Standard dependency section for gradle.
  * Define the kotlin standard library for
  * Java 8.
  */
@@ -30,6 +37,8 @@ dependencies {
     implementation "org.glassfish.jersey.containers:jersey-container-grizzly2-http:$jerseyVersion"
     implementation "org.glassfish.jersey.inject:jersey-hk2:$jerseyVersion"
     implementation "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
+
+    ktlint "com.pinterest:ktlint:0.38.1"
 }
 
 /**
@@ -50,6 +59,20 @@ jar {
     manifest {
         attributes 'Main-Class': 'ServerKt'
     }
+}
+
+task ktlint(type: JavaExec, group: "verifications"){
+    description = "Verify Kotlin Code Style!"
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt", "--verbose"
+}
+
+task ktlintFormat(type: JavaExec, group: "formatting"){
+  description = "Fix Kotlin code style!"
+  main = "com.pinterest.ktlint.Main"
+  classpath = configurations.ktlint
+  args "-F", "src/**/*.kt"
 }
 
 // Properties for `./gradlew run`

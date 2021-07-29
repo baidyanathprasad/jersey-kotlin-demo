@@ -2,7 +2,12 @@ package com.baidyanathprasad.jxrs.resources
 
 import com.baidyanathprasad.jxrs.dao.UserDao
 import com.baidyanathprasad.jxrs.domain.UserInput
-import jakarta.ws.rs.*
+import jakarta.ws.rs.Path
+import jakarta.ws.rs.Produces
+import jakarta.ws.rs.POST
+import jakarta.ws.rs.Consumes
+import jakarta.ws.rs.GET
+import jakarta.ws.rs.PathParam
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
 
@@ -18,7 +23,7 @@ class UserResource {
             return Response.ok("User with this ID is already available!").build()
         }
 
-        val userId = if(UserDao.get().isEmpty()) 1 else UserDao.get().size + 1
+        val userId = if (UserDao.get().isEmpty()) 1 else UserDao.get().size + 1
         UserDao.add(request.asModel().copy(id = userId))
 
         val user = UserDao.getById(userId)
@@ -35,7 +40,7 @@ class UserResource {
 
     @GET
     @Path("/{userId}")
-    fun getUserById(@PathParam("userId") userId: Int) : Response {
+    fun getUserById(@PathParam("userId") userId: Int): Response {
         val user = UserDao.getById(userId)
 
         return Response.ok(user).build()

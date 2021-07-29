@@ -1,13 +1,13 @@
 package com.baidyanathprasad.jxrs.dao
 
-import com.baidyanathprasad.jxrs.domain.UserInput.*
+import com.baidyanathprasad.jxrs.domain.UserInput.User
 import jakarta.ws.rs.NotFoundException
 
 object UserDao {
     private val users = mutableListOf<User>()
 
     fun add(user: User) {
-       users.add(user)
+        users.add(user)
     }
 
     fun get(): List<User> {

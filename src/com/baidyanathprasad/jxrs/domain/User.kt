@@ -1,7 +1,7 @@
 package com.baidyanathprasad.jxrs.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.util.*
+import java.util.Date
 import javax.xml.bind.annotation.XmlRootElement
 
 @XmlRootElement
