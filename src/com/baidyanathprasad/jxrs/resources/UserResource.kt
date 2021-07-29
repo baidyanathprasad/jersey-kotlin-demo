@@ -25,7 +25,6 @@ class UserResource {
 
     @GET
     fun getUsers(): Response {
-
         // Add a default users
         if (users.isEmpty()) {
             users.add(User(name = "Baidyanath", age = 27))
