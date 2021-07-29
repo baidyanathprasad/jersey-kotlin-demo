@@ -1,6 +1,7 @@
 package com.baidyanathprasad.jxrs.dao
 
-import com.baidyanathprasad.jxrs.domain.User
+import com.baidyanathprasad.jxrs.domain.UserInput.*
+import jakarta.ws.rs.NotFoundException
 
 object UserDao {
     private val users = mutableListOf<User>()
@@ -11,5 +12,10 @@ object UserDao {
 
     fun get(): List<User> {
         return users
+    }
+
+    fun getById(id: Int): User {
+        return users.firstOrNull { it.id == id }
+            ?: throw NotFoundException("User not found in the system with given ID")
     }
 }
