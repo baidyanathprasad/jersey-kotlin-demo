@@ -1,5 +1,6 @@
 package com.baidyanathprasad.jxrs.domain
 
+import com.baidyanathprasad.jxrs.common.convertDateToLocalDate
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.util.Date
 import javax.xml.bind.annotation.XmlRootElement
@@ -32,7 +33,7 @@ data class UserInput(
                 id = id,
                 name = name,
                 age = age,
-                createdAt = createdAt
+                createdAt = convertDateToLocalDate(createdAt).toString()
             )
         }
     }
@@ -48,6 +49,6 @@ data class UserInput(
         val age: Int,
 
         @JsonProperty("createdAt")
-        val createdAt: Date
+        val createdAt: String
     )
 }

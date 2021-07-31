@@ -24,6 +24,6 @@ object UserDao {
             ?: throw NotFoundException("User not found in the system with given ID")
 
         users.remove(user)
-        return (user as User).name
+        return user.name
     }
 }

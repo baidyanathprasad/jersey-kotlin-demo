@@ -44,7 +44,7 @@ class UserResource {
     fun getUserById(@PathParam("userId") userId: Int): Response {
         val user = UserDao.getById(userId)
 
-        return Response.ok(user).build()
+        return Response.ok(user.asResponse()).build()
     }
 
     @DELETE
