@@ -3,6 +3,7 @@ package com.baidyanathprasad.jxrs.resources
 import com.baidyanathprasad.jxrs.dao.UserDao
 import com.baidyanathprasad.jxrs.domain.UserInput
 import jakarta.ws.rs.Consumes
+import jakarta.ws.rs.DELETE
 import jakarta.ws.rs.GET
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
@@ -44,5 +45,13 @@ class UserResource {
         val user = UserDao.getById(userId)
 
         return Response.ok(user).build()
+    }
+
+    @DELETE
+    @Path("/{userId}")
+    fun deleteUserById(@PathParam("userId") userId: Int): Response {
+        val user = UserDao.deleteById(userId)
+
+        return Response.ok("$user remove from system \uD83D\uDE14").build()
     }
 }

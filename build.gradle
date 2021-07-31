@@ -3,6 +3,7 @@ buildscript {
         kotlinVersion = '1.2.21'
         jerseyVersion = '3.0.2'
         shadowVersion = '2.0.2'
+        jaxbVersion = '2.3.3'
     }
 }
 /**
@@ -37,6 +38,7 @@ dependencies {
     implementation "org.glassfish.jersey.containers:jersey-container-grizzly2-http:$jerseyVersion"
     implementation "org.glassfish.jersey.inject:jersey-hk2:$jerseyVersion"
     implementation "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
+    implementation "org.glassfish.jaxb:jaxb-runtime:$jaxbVersion"
 
     ktlint "com.pinterest:ktlint:0.38.1"
 }

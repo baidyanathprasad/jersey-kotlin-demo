@@ -18,4 +18,12 @@ object UserDao {
         return users.firstOrNull { it.id == id }
             ?: throw NotFoundException("User not found in the system with given ID")
     }
+
+    fun deleteById(id: Int): String {
+        val user = users.firstOrNull { it.id == id }
+            ?: throw NotFoundException("User not found in the system with given ID")
+
+        users.remove(user)
+        return (user as User).name
+    }
 }
