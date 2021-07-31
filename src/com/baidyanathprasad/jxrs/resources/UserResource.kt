@@ -2,16 +2,16 @@ package com.baidyanathprasad.jxrs.resources
 
 import com.baidyanathprasad.jxrs.dao.UserDao
 import com.baidyanathprasad.jxrs.domain.UserInput
-import jakarta.ws.rs.Path
-import jakarta.ws.rs.Produces
-import jakarta.ws.rs.POST
 import jakarta.ws.rs.Consumes
 import jakarta.ws.rs.GET
+import jakarta.ws.rs.POST
+import jakarta.ws.rs.Path
 import jakarta.ws.rs.PathParam
+import jakarta.ws.rs.Produces
 import jakarta.ws.rs.core.MediaType
 import jakarta.ws.rs.core.Response
 
-@Path("/v3/users")
+@Path("/api/v3/users")
 @Produces(MediaType.APPLICATION_JSON)
 class UserResource {
 
