@@ -27,4 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Lint check
-        run: ./gradlew ktlin
+        run: ./gradlew ktlint
